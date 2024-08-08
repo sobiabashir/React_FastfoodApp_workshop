@@ -1,38 +1,134 @@
-.App {
-  text-align: center;
-}
+/* src/App.css */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* src/App.css */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Header Styles */
+.app-header {
+  background-color: #007bff; /* Default blue background */
+  padding: 20px;
+  color: white;
+  border-radius: 15px; /* Rounded corners */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-bottom: 20px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center; /* Align items vertically */
+  justify-content: center; /* Center items horizontally */
+}
+
+.app-title {
+  font-size: 24px;
+  margin: 0;
+  margin-left: 10px; /* Space between icon and title */
+}
+
+.app-icon {
+  font-size: 36px; /* Size of the icon */
+}
+
+/* Light Theme */
+.app.light .app-header {
+  background-color: #007bff;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.app.light .menu-container,
+.app.light .order-container {
+  background-color: #f8f9fa;
+  color: #000;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Dark Theme */
+.app.dark .app-header {
+  background-color: #343a40;
+  color: white;
+}
+
+.app.dark .menu-container,
+.app.dark .order-container {
+  background-color: #343a40;
+  color: #fff;
+}
+
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.menu-container, .order-container {
+  width: 45%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+/* Light Theme */
+.app.light .menu-container,
+.app.light .order-container {
+  background-color: #f8f9fa;
+  color: #000;
+}
+
+/* Dark Theme */
+.app.dark .menu-container,
+.app.dark .order-container {
+  background-color: #343a40;
+  color: #fff;
+}
+
+button {
+  margin: 5px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.app.light {
+  background-color: white;
+  color: black;
+}
+
+.app.dark {
+  background-color: black;
+  color: white;
+}
+
+img {
+  margin-right: 10px;
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+}
+.theme-toggle-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 1000; /* Ensures the button is on top */
 }
