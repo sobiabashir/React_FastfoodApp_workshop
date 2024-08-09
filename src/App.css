@@ -1,28 +1,67 @@
 /* src/App.css */
 
-/* src/App.css */
+html, body, #root, .app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--background-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
 /* Header Styles */
 .app-header {
-  background-color: #007bff; /* Default blue background */
+  width: 100%;
+  background-color: #007bff; 
   padding: 20px;
   color: white;
-  border-radius: 15px; /* Rounded corners */
+  border-radius: 15px; 
   transition: background-color 0.3s ease, color 0.3s ease;
-  margin-bottom: 20px;
   display: flex;
-  align-items: center; /* Align items vertically */
-  justify-content: center; /* Center items horizontally */
+  align-items: center; 
+  justify-content: center; 
+  box-sizing: border-box;
 }
 
+/* Title and Icon in the Header */
 .app-title {
   font-size: 24px;
   margin: 0;
-  margin-left: 10px; /* Space between icon and title */
+  margin-left: 20px; 
 }
 
 .app-icon {
-  font-size: 36px; /* Size of the icon */
+  font-size: 40px; 
+}
+
+/* Main Content Container */
+.container {
+  display: display-box;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex:1; 
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  gap: 20px; 
+  background-color:rgb(243, 246, 249);
+}
+
+
+.menu-container, .order-container {
+  flex: 1; 
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-sizing: border-box;
+  min-width: 300px; 
 }
 
 /* Light Theme */
@@ -32,6 +71,7 @@
 }
 
 .app.light .menu-container,
+.app.light .container,
 .app.light .order-container {
   background-color: #f8f9fa;
   color: #000;
@@ -39,86 +79,18 @@
 
 /* Dark Theme */
 .app.dark .app-header {
-  background-color: #343a40;
-  color: white;
-}
-
-.app.dark .menu-container,
-.app.dark .order-container {
-  background-color: #343a40;
-  color: #fff;
-}
-
-
-.container {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-}
-
-.menu-container, .order-container {
-  width: 45%;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
-}
-
-/* Light Theme */
-.app.light .menu-container,
-.app.light .order-container {
-  background-color: #f8f9fa;
+  background-color: #0c81f5;
   color: #000;
 }
 
-/* Dark Theme */
 .app.dark .menu-container,
+.app.light .container,
 .app.dark .order-container {
   background-color: #343a40;
-  color: #fff;
+  color: #131111;
 }
 
-button {
-  margin: 5px;
-  padding: 8px 16px;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.app.light {
-  background-color: white;
-  color: black;
-}
-
-.app.dark {
-  background-color: black;
-  color: white;
-}
-
-img {
-  margin-right: 10px;
-  vertical-align: middle;
-  width: 50px;
-  height: 50px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: flex;
-  align-items: center;
-}
+/* Button Styles */
 .theme-toggle-button {
   position: fixed;
   bottom: 20px;
@@ -130,5 +102,44 @@ li {
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  z-index: 1000; /* Ensures the button is on top */
+}
+
+.theme-toggle-button:hover {
+  background-color: #1e3f62;
+}
+
+img {
+  margin-right: 10px;
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+}
+
+ul {
+  list-style-type: counter;
+  padding: 20;
+}
+
+li {
+  display: right;
+  align-items: right;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .menu-container, .order-container {
+    width: 100%;
+    margin-bottom: 50px;
+  }
 }
