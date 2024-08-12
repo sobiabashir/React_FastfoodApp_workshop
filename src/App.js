@@ -1,15 +1,23 @@
-// src/App.js
 import React, { useState } from 'react';
 import Menu from './components/Menu';
 import Order from './components/Order';
 import ThemeToggle from './components/ThemeToggle';
 import './App.css';
 
+import burgerIcon from './images/burger-icon.jpg';
+import friesIcon from './images/fries-icon.jpg';
+import drinkIcon from './images/drink-icon.jpg';
+import pizzaIcon from './images/pizza-icon.jpg';
+import pastaIcon from './images/pasta-icon.jpg';
+
+
 const App = () => {
   const [items] = useState([
-    { id: 1, name: 'Burger', price: 5.99 },
-    { id: 2, name: 'Fries', price: 2.99 },
-    { id: 3, name: 'Soda', price: 1.99 },
+    { id: 1, name: 'Burger', price: 64.99, description: 'Juicy grilled burgers with lettuce and tomato.', icon: burgerIcon},
+    { id: 2, name: 'Fries', price: 32.99, description: 'Crispy golden fries.', icon: friesIcon },
+    { id: 3, name: 'Drink', price: 21.99, description: 'Refreshing soft drink.', icon: drinkIcon },
+    { id: 4, name: 'Pizza', price: 98.99, description: 'Delicious cheese pizza with a crispy crust.', icon: pizzaIcon },
+    { id: 5, name: 'Pasta', price: 88.99, description: 'Creamy pasta with garlic bread.', icon: pastaIcon },
   ]);
 
   const [orderItems, setOrderItems] = useState([]);
@@ -39,6 +47,14 @@ const App = () => {
   };
 
   const totalPrice = orderItems.reduce((total, item) => total + item.price * item.quantity, 0);
+   
+  const formatCurrencySEK = (amount) => {
+    return new Intl.NumberFormat('sv-SE', {
+      style: 'currency',
+      currency: 'SEK',
+    }).format(amount);
+  };
+
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
@@ -52,10 +68,12 @@ const App = () => {
       </header>
       <div className="container">
         <div className="menu-container">
-          <Menu items={items} addToOrder={addToOrder} />
+        <Menu items={items} addToOrder={addToOrder} formatCurrency={formatCurrencySEK} />
+      
         </div>
         <div className="order-container">
-          <Order orderItems={orderItems} updateQuantity={updateQuantity} totalPrice={totalPrice} />
+        <Order orderItems={orderItems} updateQuantity={updateQuantity} totalPrice={totalPrice} formatCurrency={formatCurrencySEK} />
+      
         </div>
       </div>
       <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
@@ -64,4 +82,3 @@ const App = () => {
 };
 
 export default App;
-

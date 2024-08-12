@@ -1,9 +1,16 @@
-// src/components/Order.js
 import React from 'react';
 
+
 const Order = ({ orderItems, updateQuantity, totalPrice }) => {
+
+  
+  const handleInputChange = (id, newQuantity) => {
+    const quantity = Math.max(0, Number(newQuantity)); 
+    updateQuantity(id, quantity);
+  };
+
   return (
-    <div>
+    <div className="order-container">
       <h2>Your Order</h2>
       {orderItems.length === 0 ? (
         <p>Your order is empty.</p>
@@ -11,14 +18,26 @@ const Order = ({ orderItems, updateQuantity, totalPrice }) => {
         <ul>
           {orderItems.map(item => (
             <li key={item.id}>
-              {item.name} - ${item.price.toFixed(2)} x {item.quantity}
-              <button onClick={() => updateQuantity(item.id, item.quantity - 1)}> - </button>
-              <button onClick={() => updateQuantity(item.id, item.quantity + 1)}> + </button>
+              <span>{item.name} -  {item.price.toFixed(2)} Kr.</span>
+              <span>
+                <button onClick={() => updateQuantity(item.id, item.quantity - 1)}> - </button>
+                
+               
+                <input
+                  type="number"
+                  value={item.quantity}
+                  onChange={(e) => handleInputChange(item.id, e.target.value)}
+                  style={{ width: '50px', textAlign: 'center', margin: '0 10px' }}
+                  min="0"
+                />
+                
+                <button onClick={() => updateQuantity(item.id, item.quantity + 1)}> + </button>
+              </span>
             </li>
           ))}
         </ul>
       )}
-      <h3>Total: ${totalPrice.toFixed(2)}</h3>
+      <h3>Total:  {totalPrice.toFixed(2)} Kr.</h3>
     </div>
   );
 };

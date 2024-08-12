@@ -40,29 +40,104 @@ html, body, #root, .app {
   font-size: 40px; 
 }
 
-/* Main Content Container */
 .container {
-  display: display-box;
-  justify-content: space-around;
-  align-items: flex-start;
-  flex:1; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
-  gap: 20px; 
-  background-color:rgb(243, 246, 249);
+  gap: 20px;
+  background-color: rgb(243, 246, 249);
 }
 
+.order-container ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
 
-.menu-container, .order-container {
-  flex: 1; 
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, color 0.3s ease;
   box-sizing: border-box;
-  min-width: 300px; 
 }
+
+.menu-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #a09a9a;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-size: cover;
+  background-position: center;
+  height: 300px; /* Adjust height as needed */
+  box-sizing: border-box;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.menu-item-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8); /* Optional for readability */
+  border-radius: 10px;
+  transition: opacity 0.3s ease;
+  opacity: 0; /* Hide by default */
+}
+
+.menu-item:hover .menu-item-content {
+  opacity: 1; /* Show on hover */
+  background: rgba(255, 255, 255, 0.9); /* Adjust background if needed */
+}
+
+.description-box {
+  display: none; 
+  position: absolute;
+  bottom: auto; /* Position above the menu item */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(201, 178, 178, 0.8);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 200px; /* Adjust as needed */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item:hover .description-box {
+  display: block; /* Show on hover */
+}
+.menu-item h3 {
+  margin: 10px 0 5px;
+  font-size: 1.2em;
+}
+
+.menu-item p {
+  margin: 5px 0;
+  color: #555;
+  text-align: center;
+}
+
 
 /* Light Theme */
 .app.light .app-header {
@@ -84,7 +159,7 @@ html, body, #root, .app {
 }
 
 .app.dark .menu-container,
-.app.light .container,
+.app.dark .container,
 .app.dark .order-container {
   background-color: #343a40;
   color: #131111;
@@ -103,43 +178,40 @@ html, body, #root, .app {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+.order-container input[type="number"] {
+  width: 50px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
 
 .theme-toggle-button:hover {
   background-color: #1e3f62;
 }
 
 img {
-  margin-right: 10px;
-  vertical-align: middle;
+  margin-right: 1px;
+  vertical-align: baseline;
   width: 100px;
   height: 100px;
 }
 
-ul {
-  list-style-type: counter;
-  padding: 20;
+
+
+.order-container li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f9fa;
 }
-
-li {
-  display: right;
-  align-items: right;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 1200px) {
-  .container {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .menu-container, .order-container {
+.menu-container, .order-container {
     width: 100%;
+
     margin-bottom: 50px;
   }
-}
+  
+
